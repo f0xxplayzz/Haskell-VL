@@ -1,0 +1,1 @@
+data Vektor = VEK [Int]
