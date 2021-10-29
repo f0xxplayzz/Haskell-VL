@@ -1,0 +1,22 @@
+Div (
+    (Add
+        (Mult 
+            (Monom 1 5) 
+            (Add 
+                (Monom 1 1) 
+                (Monom 1 2)
+            )
+        ) 
+        (Mult 
+            (Add 
+                (Monom 1 1) 
+                (Monom 1 2)
+            ) 
+            (Add 
+                (Monom 3 3) 
+                (Monom 6 1)
+            )
+        )
+    ) 
+    (Monom 3 3)
+)
