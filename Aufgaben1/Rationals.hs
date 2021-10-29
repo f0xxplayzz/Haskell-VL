@@ -1,4 +1,5 @@
-data Rational_ = RAT (Int,Int)
+import GHC.Show (Show)
+data Rational_ = RAT (Int,Int) deriving (Eq, Show)
 
 add,sub,mul,div :: (Rational_,Rational_) -> Rational_
 genGGT::Int -> Int -> Int

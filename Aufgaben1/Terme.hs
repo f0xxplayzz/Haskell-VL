@@ -1,3 +1,5 @@
+module Aufgaben1.Terme(Term(..)) where
+
 import qualified GHC.Num as Float
 import qualified System.Directory.Internal.Prelude as Float
 data Term = Monom Float Integer
@@ -41,4 +43,4 @@ instance Show Term where
         |b==1 = show a ++ "x"
         |otherwise = show a ++ "x^" ++ show b
     show (Add a b) = show a ++ "+" ++ show b 
-    show (Div a b) = show a ++ "/" ++ show b
+    show (Div a b) = "(" ++ show a ++ ")/(" ++ show b ++ ")"
