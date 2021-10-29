@@ -13,7 +13,7 @@ data TermToken = FloatToken Float
     | BROPEN 
     | BRCLOSE
     | EXP 
-    deriving(Show)
+    deriving(Show,Eq)
 
 termLexer:: String -> [TermToken]
 numLexer:: String -> [TermToken]
@@ -42,5 +42,5 @@ isFloat c = isDigit c || isPoint c
 floatReader cs = FloatToken (read num) : termLexer rest
     where (num,rest) = span (isFloat) cs
 
-numLexer cs = if isPoint f then floatReader cs else IntToken (read num) : termLexer rest 
+numLexer cs = if isPoint f then floatReader cs else IntToken (read num) : termLexer (f:rest) 
     where (num,f:rest) = span isDigit cs
