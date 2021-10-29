@@ -42,5 +42,6 @@ instance Show Term where
         |b==0 = show a
         |b==1 = show a ++ "x"
         |otherwise = show a ++ "x^" ++ show b
+    show (Add (Monom a 0) (Monom b 0)) = show (a+b)
     show (Add a b) = show a ++ "+" ++ show b 
     show (Div a b) = "(" ++ show a ++ ")/(" ++ show b ++ ")"

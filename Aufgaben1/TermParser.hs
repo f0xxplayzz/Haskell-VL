@@ -38,6 +38,8 @@ parserMonom = ((parserFloat +.+ lexem XBASE +.+ lexem EXP +.+ parserInt)
         <<< \a -> Monom a 0)
     ||| ( parserInt
         <<< \a -> Monom (Float.fromInteger a) 0)
+    ||| ( lexem XBASE
+        <<< \_ -> Monom 1 1)
 
 parserAdd::Parser TermToken Term
 parserAdd = ((parserMonom +.+ lexem PLUS +.+ parserMain)

@@ -42,5 +42,7 @@ isFloat c = isDigit c || isPoint c
 floatReader cs = FloatToken (read num) : termLexer rest
     where (num,rest) = span (isFloat) cs
 
-numLexer cs = if isPoint f then floatReader cs else IntToken (read num) : termLexer (f:rest) 
-    where (num,f:rest) = span isDigit cs
+numLexer cs = if rest /= "" then 
+        if isPoint (head rest) then floatReader cs else IntToken (read num) : termLexer rest
+    else  [IntToken (read num)]
+    where (num,rest) = span isDigit cs
