@@ -1,6 +1,5 @@
 module Aufgaben1.Kombinatoren where
 
-import Aufgaben1.Terme
 
 type Parser tok a = [tok] -> [(a, [tok])]
 

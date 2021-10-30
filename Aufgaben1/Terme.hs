@@ -2,11 +2,7 @@ module Aufgaben1.Terme(Term(..)) where
 
 import qualified GHC.Num as Float
 import qualified System.Directory.Internal.Prelude as Float
-data Term = Monom Float Integer
-    |Add Term Term
-    |Mult Term Term
-    |Div Term Term
-    deriving(Eq)
+import Aufgaben1.TermParser 
 
 instance Num Term where
     (+) (Monom a b) (Monom c d)
@@ -45,3 +41,6 @@ instance Show Term where
     show (Add (Monom a 0) (Monom b 0)) = show (a+b)
     show (Add a b) = show a ++ "+" ++ show b 
     show (Div a b) = "(" ++ show a ++ ")/(" ++ show b ++ ")"
+
+instance Read Term where
+    readsPrec _ input = [(parser input ,"")]

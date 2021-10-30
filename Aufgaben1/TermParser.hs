@@ -1,7 +1,14 @@
+module Aufgaben1.TermParser where
 import Aufgaben1.TermLexer
-import Aufgaben1.Terme
 import qualified GHC.Num as Float
 import Aufgaben1.Kombinatoren
+
+data Term = Monom Float Integer
+    |Add Term Term
+    |Mult Term Term
+    |Div Term Term
+    deriving(Eq)
+
 
 parser :: String -> Term
 parser = fst . head . correctsols. parserMain . termLexer
@@ -36,9 +43,15 @@ parserMonom = ((parserFloat +.+ lexem XBASE +.+ lexem EXP +.+ parserInt)
         <<< \(a,_) -> Monom (Float.fromInteger a) 1)
     ||| ( parserFloat
         <<< \a -> Monom a 0)
+    ||| ( lexem BROPEN +.+ parserFloat +.+ lexem BRCLOSE
+        <<< \((_,a),_) -> Monom a 0)
     ||| ( parserInt
         <<< \a -> Monom (Float.fromInteger a) 0)
+    ||| ( lexem BROPEN +.+ parserInt +.+ lexem BRCLOSE
+        <<< \((_,a),_) -> Monom (Float.fromInteger a) 0)
     ||| ( lexem XBASE
+        <<< \_ -> Monom 1 1)
+    ||| ( lexem BROPEN +.+ lexem XBASE +.+ lexem BRCLOSE
         <<< \_ -> Monom 1 1)
 
 parserAdd::Parser TermToken Term
